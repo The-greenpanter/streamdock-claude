@@ -19,8 +19,8 @@ Claude Code stores sessions per working directory. If several sessions share a f
 so a button per project is impossible. This plugin indexes sessions by their real id
 and resumes exactly the one you picked.
 
-While building it, a few things about the StreamDock plugin host turned out to be
-undocumented. They are collected under
+Building it also turned up a handful of host behaviours that are either undocumented
+or documented in a way that does not hint at how they fail. They are collected under
 [Notes for other plugin authors](#notes-for-other-plugin-authors) — that section is
 probably more useful than the rest of this file if you are writing your own plugin.
 
@@ -200,10 +200,14 @@ These are empirical findings from this device and app version, not official
 documentation. Verify before relying on them.
 
 - **`"Nodejs": { "Version": "20" }` in `manifest.json` is what makes the host start a
-  Node process for a raw `.js` entry point.** Without it the manifest still loads —
-  icons and settings appear — but no process is ever spawned, and the host silently
-  retries every 60 seconds. The official Node template compiles to an `.exe` instead,
-  so this path is not covered by it, though every stock Node plugin uses it.
+  Node process for a raw `.js` entry point.** The field *is* in the
+  [official manifest reference](https://sdk.key123.vip/en/guide/manifest.html), listed
+  as optional. What is not obvious is the failure mode when you omit it: the manifest
+  still loads, the category and icons appear in the app and the Property Inspector
+  works — but no process is ever spawned, and the host silently retries every 60
+  seconds forever, with nothing in its log. It looks like a broken plugin, not a
+  missing field. The official Node template compiles to an `.exe` and so never needs
+  it, which is why it is easy to miss.
 - Argument order is the real contract: the stock plugins read `process.argv[3]`
   (port), `[5]` (uuid), `[7]` (registerEvent), `[9]` (info) positionally rather than
   parsing flag names.
