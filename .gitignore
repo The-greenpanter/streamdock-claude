@@ -1,0 +1,34 @@
+# Dependencias
+node_modules/
+
+# Logs del plugin en ejecución (contienen rutas locales y actividad)
+log/
+*.log
+
+# Notas de trabajo y estado personal: entorno, rutas locales, nombres e ids
+# de sesiones reales. Los hallazgos técnicos que valen para cualquiera están
+# en el README, sección "Notes for other plugin authors".
+memory/
+CLAUDE.md
+AGENTS.md
+.claude/
+
+# Artefactos de calibración y pruebas, se regeneran con los build-*.js.
+# Con "/" delante: solo en la raíz, para no tapar los de docs/.
+/calibracion.png
+/calibracion2.png
+/calibracion2-mapa.json
+/preview-estados.png
+/preview-mosaico.png
+/test-anim.gif
+/tile-test.png
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp

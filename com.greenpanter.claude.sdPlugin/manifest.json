@@ -1,0 +1,79 @@
+{
+    "SDKVersion": 1,
+    "Author": "The Green Panter",
+    "Name": "Claude Sessions",
+    "Description": "Abre las sesiones de Claude Code en Windows Terminal y muestra su estado.",
+    "Category": "Claude",
+    "CategoryIcon": "resources/categoryIcon",
+    "Icon": "resources/pluginIcon",
+    "URL": "https://thegreenpanter.com",
+    "Version": "1.0.0",
+    "CodePath": "plugin/index.js",
+    "CodePathWin": "plugin/index.js",
+    "CodePathMac": "plugin/index.js",
+
+    "//Nodejs": "OBLIGATORIO: sin esta clave StreamDock lee el manifest (iconos y ajustes salen) pero nunca lanza node20.exe, y reintenta cada 60s para siempre. Los 5 plugins de fabrica en Node la declaran igual.",
+    "Nodejs": {
+        "Version": "20"
+    },
+    "PropertyInspectorPath": "propertyInspector/pi.html",
+    "OS": [
+        {
+            "Platform": "windows",
+            "MinimumVersion": "10"
+        }
+    ],
+    "Software": {
+        "MinimumVersion": "3.10.188.226"
+    },
+    "Actions": [
+        {
+            "UUID": "com.greenpanter.claude.launch",
+            "Name": "Launch Sessions",
+            "Tooltip": "Abre Windows Terminal con las sesiones de Claude Code.",
+            "Icon": "resources/actionLaunch",
+            "Controllers": ["Keypad"],
+            "SupportedInMultiActions": true,
+            "PropertyInspectorPath": "propertyInspector/pi.html",
+            "States": [
+                {
+                    "Image": "resources/actionLaunch",
+                    "TitleAlignment": "bottom",
+                    "ShowTitle": true,
+                    "FontSize": "10"
+                }
+            ]
+        },
+        {
+            "UUID": "com.greenpanter.claude.wallpaper",
+            "Name": "Wallpaper / GIF",
+            "Tooltip": "Reparte una imagen o GIF entre varias teclas y la barra lateral.",
+            "Icon": "resources/actionWall",
+            "Controllers": ["Keypad", "Information", "SecondaryScreen"],
+            "SupportedInMultiActions": false,
+            "PropertyInspectorPath": "propertyInspector/wallpaper.html",
+            "States": [
+                {
+                    "Image": "resources/actionWall",
+                    "ShowTitle": false
+                }
+            ]
+        },
+        {
+            "UUID": "com.greenpanter.claude.status",
+            "Name": "Session Status",
+            "Tooltip": "Muestra cuantos proyectos tienen sesiones de Claude.",
+            "Icon": "resources/actionStatus",
+            "Controllers": ["Keypad", "Information", "SecondaryScreen"],
+            "SupportedInMultiActions": false,
+            "States": [
+                {
+                    "Image": "resources/actionStatus",
+                    "TitleAlignment": "bottom",
+                    "ShowTitle": true,
+                    "FontSize": "10"
+                }
+            ]
+        }
+    ]
+}

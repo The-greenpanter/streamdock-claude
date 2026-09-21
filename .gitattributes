@@ -1,0 +1,11 @@
+# Normaliza finales de línea: LF en el repo, nativos al hacer checkout.
+* text=auto
+
+# Scripts de Windows: CRLF también en disco
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+
+# Binarios, sin conversión
+*.png binary
+*.jpg binary
+*.gif binary

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Wallpaper</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            font-size: 13px; color: #d8d8d8; background: #2d2d2d;
+            margin: 0; padding: 12px;
+        }
+        .row { display: flex; align-items: center; margin-bottom: 10px; }
+        label { flex: 0 0 80px; color: #969696; }
+        input, select {
+            flex: 1; background: #3d3d3d; color: #d8d8d8;
+            border: 1px solid #4d4d4d; border-radius: 4px; padding: 5px;
+            min-width: 0;
+        }
+        button {
+            background: #4d4d4d; color: #d8d8d8; border: 1px solid #5d5d5d;
+            border-radius: 4px; padding: 5px 10px; margin-left: 6px; cursor: pointer;
+        }
+        button:hover { background: #5d5d5d; }
+        .hint { color: #7a7a7a; font-size: 11px; line-height: 1.45; margin-top: 8px; }
+        .hint b { color: #f27507; }
+        input[type=range] { accent-color: #f27507; padding: 0; }
+        .val { flex: 0 0 46px; text-align: right; color: #969696; font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <label for="source">Imagen</label>
+        <input type="text" id="source" placeholder="C:\ruta\anime.gif">
+        <button id="browse">...</button>
+    </div>
+    <input type="file" id="picker" accept=".gif,.png,.jpg,.jpeg" style="display:none">
+
+    <div class="row">
+        <label for="mode">Reparto</label>
+        <select id="mode">
+            <option value="span">Repartir entre teclas</option>
+            <option value="fit">Imagen entera en esta tecla</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label for="fit">Encuadre</label>
+        <select id="fit">
+            <option value="contain">Entera visible (sobra fondo)</option>
+            <option value="cover">Llenar (corta lo que sobra)</option>
+            <option value="stretch">Estirar hasta encajar</option>
+            <option value="none">Sin reescalar (1:1)</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label for="zoom">Zoom</label>
+        <input type="range" id="zoom" min="10" max="400" step="5" value="100">
+        <span class="val" id="zoomVal">100%</span>
+    </div>
+
+    <div class="row">
+        <label for="offsetX">Mover X</label>
+        <input type="range" id="offsetX" min="-100" max="100" step="1" value="0">
+        <span class="val" id="offsetXVal">0%</span>
+    </div>
+
+    <div class="row">
+        <label for="offsetY">Mover Y</label>
+        <input type="range" id="offsetY" min="-100" max="100" step="1" value="0">
+        <span class="val" id="offsetYVal">0%</span>
+    </div>
+
+    <div class="row">
+        <label></label>
+        <button id="reset">Reiniciar encuadre</button>
+    </div>
+
+    <div class="hint">
+        <b>Repartir</b>: pon esta accion en cada tecla que deba formar parte de
+        la imagen (y en la barra lateral), con el mismo archivo y el mismo
+        encuadre en todas.<br>
+        <b>Encuadre</b>: nada se recorta ni se encoge solo. <b>Sin reescalar</b>
+        respeta el tamano real en pixeles; con <b>Zoom</b> y <b>Mover</b> eliges
+        que porcion se ve.<br>
+        Los GIF van en bucle y sincronizados. Pulsa la tecla para recargar el
+        archivo desde disco.
+    </div>
+
+    <script src="wallpaper.js"></script>
+</body>
+</html>

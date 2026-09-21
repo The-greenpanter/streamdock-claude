@@ -1,0 +1,46 @@
+{
+  "name": "streamdock-claude",
+  "version": "1.0.0",
+  "description": "StreamDock plugin to launch and monitor Claude Code sessions, and spread images or GIFs across the deck",
+  "main": "com.greenpanter.claude.sdPlugin/plugin/index.js",
+  "type": "commonjs",
+  "private": true,
+  "scripts": {
+    "test": "node tests/test-resolve.js && node tests/test-modos.js && node tests/test-paths.js && node tests/test-harness.js && node tests/test-wallpaper.js",
+    "icons": "node scripts/build-icons.js",
+    "deploy": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deploy.ps1"
+  },
+  "keywords": [
+    "streamdock",
+    "mirabox",
+    "stream-dock",
+    "claude",
+    "claude-code",
+    "plugin",
+    "macropad"
+  ],
+  "author": "Juan Diego Peña Castillo (The Green Panter)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-greenpanter/streamdock-claude.git"
+  },
+  "bugs": {
+    "url": "https://github.com/The-greenpanter/streamdock-claude/issues"
+  },
+  "homepage": "https://github.com/The-greenpanter/streamdock-claude#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "os": [
+    "win32"
+  ],
+  "dependencies": {
+    "jpeg-js": "^0.4.4",
+    "omggif": "^1.0.10",
+    "ws": "^8.21.3"
+  },
+  "files": [
+    "com.greenpanter.claude.sdPlugin/"
+  ]
+}

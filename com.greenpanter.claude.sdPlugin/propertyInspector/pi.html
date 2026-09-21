@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Claude Sessions</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            font-size: 13px; color: #d8d8d8; background: #2d2d2d;
+            margin: 0; padding: 12px;
+        }
+        .row { display: flex; align-items: center; margin-bottom: 10px; }
+        label { flex: 0 0 80px; color: #969696; }
+        select, input[type=text] {
+            flex: 1; min-width: 0; background: #3d3d3d; color: #d8d8d8;
+            border: 1px solid #4d4d4d; border-radius: 4px; padding: 5px;
+            font-family: inherit; font-size: 12px;
+        }
+        input[type=text]::placeholder { color: #6a6a6a; }
+        button {
+            background: #4d4d4d; color: #d8d8d8; border: 1px solid #5d5d5d;
+            border-radius: 4px; padding: 5px 10px; margin-left: 6px; cursor: pointer;
+        }
+        button:hover { background: #5d5d5d; }
+        .check { display: flex; align-items: center; margin: -2px 0 10px 80px; }
+        .check input { margin: 0 6px 0 0; accent-color: #f27507; }
+        .check label { flex: none; color: #b8b8b8; cursor: pointer; }
+        .hint { color: #7a7a7a; font-size: 11px; line-height: 1.45; margin-top: 8px; }
+        .hint b { color: #f27507; }
+        .hint code { color: #b8b8b8; }
+        .cwd { color: #5d5d5d; font-size: 10px; margin: -4px 0 10px 80px;
+               word-break: break-all; }
+        [hidden] { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <label for="session">Abrir</label>
+        <select id="session">
+            <option value="all">Todas las sesiones con nombre</option>
+            <option value="picker">Elegir sesion (selector de Claude)</option>
+            <option value="custom">Comando personalizado</option>
+        </select>
+        <button id="refresh" title="Volver a leer las sesiones">↻</button>
+    </div>
+    <div class="cwd" id="cwd"></div>
+
+    <div class="check" id="excluirRow" hidden>
+        <input type="checkbox" id="excluir">
+        <label for="excluir">Quitarla del boton "Todas"</label>
+    </div>
+
+    <div class="row" id="paramsRow" hidden>
+        <label for="params">Parametros</label>
+        <input type="text" id="params" placeholder="--model opus   (vacio = Claude nuevo)">
+    </div>
+
+    <div class="row" id="cwdRow" hidden>
+        <label for="cwdInput">Carpeta</label>
+        <input type="text" id="cwdInput" placeholder="(por defecto)">
+    </div>
+
+    <div class="row" id="tituloRow" hidden>
+        <label for="titulo">Nombre</label>
+        <input type="text" id="titulo" placeholder="texto del boton (opcional)">
+    </div>
+
+    <div class="hint" id="hintSesion">
+        Se guarda el <b>id</b> de la sesion, no el nombre: asi puedes
+        renombrarla sin romper el boton. Si ese id desaparece se busca por
+        nombre, y si tampoco, se abre el selector de Claude.
+    </div>
+
+    <div class="hint" id="hintCustom" hidden>
+        Lo que escribas se pasa tal cual a <code>claude</code>. Las comillas se
+        respetan: <code>--add-dir "C:\Mi Carpeta"</code>.<br>
+        <b>Vacio</b> abre Claude nuevo en la carpeta indicada.
+    </div>
+
+    <script src="pi.js"></script>
+</body>
+</html>
